@@ -1,0 +1,204 @@
+<div class="comment-tabs">
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+      <a role="tab" href="#personal-information" data-toggle="tab">
+        <h4 class="reviews text-capitalize">
+          <span class="fa fa-address-book"></span>Datos Filiatorios</h4>
+      </a>
+    </li>
+    <li>
+      <a href="#history" role="tab" data-toggle="tab">
+        <h4 class="reviews text-capitalize">
+          <span class="fa fa-heartbeat"></span>Antecedentes</h4>
+      </a>
+    </li>
+    <li>
+      <a href="#consultations" role="tab" data-toggle="tab">
+        <h4 class="reviews text-capitalize">
+          <span class="fa fa-stethoscope"></span>Consultas</h4>
+      </a>
+    </li>
+    <li>
+      <a href="#complementary-methods" role="tab" data-toggle="tab">
+        <h4 class="reviews text-capitalize">
+          <span class="fa fa-plus-square"></span>Metodos Complementarios</h4>
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="personal-information">
+      <div class="form-horizontal">
+        <div class="form-group col-sm-12 col-lg-6 col-md-6">
+          <label for="name" class="col-sm-3 control-label">Nombre</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del paciente">
+          </div>
+        </div>
+        <div class="form-group col-lg-6 col-md-6">
+          <label for="lastname" class="col-sm-3 control-label">Apellido</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellido del paciente">
+          </div>
+        </div>
+        <div class="form-group col-lg-6 col-md-6">
+          <label for="dni" class="col-sm-3 control-label">DNI</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="dni" id="dni" placeholder="Documento">
+          </div>
+        </div>
+        <div class="form-group col-lg-6 col-md-6">
+          <label for="birthDate" class="col-sm-3 control-label">Fecha de Nacimiendo</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="birthDate" id="birthDate" placeholder="04/02/2001">
+          </div>
+        </div>
+        <div class="form-group col-lg-6 col-md-6">
+          <label for="consultationReason" class="col-sm-3 control-label">Motivo Consulta</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="consultationReason" id="consultationReason" placeholder="Motivo de la consulta">
+          </div>
+        </div>
+        <div class="form-group col-lg-6 col-md-6">
+          <label for="socialSecurity" class="col-sm-3 control-label">Obra Social</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="socialSecurity" id="socialSecurity" placeholder="Seleccione una obra social">
+          </div>
+        </div>
+        <div class="form-group col-lg-12 col-md-12">
+          <label for="diagnostic" class="col-sm-3 control-label">Diagnóstico </label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="diagnostic" id="diagnostic" placeholder="Seleccione un diagnóstico">
+          </div>
+        </div>
+        <div class="form-group col-lg-6 col-md-6">
+          <label for="origin" class="col-sm-3 control-label">Procedencia</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="origin" id="origin" placeholder="Procedencia">
+          </div>
+        </div>
+        <div class="form-group col-lg-6 col-md-6">
+          <label for="contactPhones" class="col-sm-3 control-label">Teléfonos</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="contactPhones" id="contactPhones" placeholder="0343-154877675, 4567465">
+          </div>
+        </div>
+        <div class="form-group col-lg-6 col-md-9">
+          <label for="email" class="col-sm-3 control-label">Email</label>
+          <div class="col-sm-9">
+            <input type="email" class="form-control" name="email" id="email" placeholder="ejemplo@mail.com">
+          </div>
+        </div>
+        <div class="form-group"></div>
+      </div>
+    </div>
+    <div class="tab-pane" id="history">
+      <div id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-info">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#rerinatologicalBackgroundTab" aria-expanded="true"
+              aria-controls="rerinatologicalBackgroundTab">
+              <span class="fa fa-arrow-circle-down"></span> Antecedentes Perinatologícos
+            </a>
+          </div>
+          <div id="rerinatologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <textarea class="form-control" name="rerinatologicalBackground" id="rerinatologicalBackground" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#epidemiologicalBackgroundTab" aria-expanded="true"
+              aria-controls="epidemiologicalBackgroundTab">
+              <span class="fa fa-arrow-circle-down"></span> Antecedentes Epidemiológicos
+            </a>
+          </div>
+          <div id="epidemiologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <textarea class="form-control" name="epidemiologicalBackground" id="epidemiologicalBackground" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#physiologicalBackgroundTab" aria-expanded="true"
+              aria-controls="physiologicalBackgroundTab">
+              <span class="fa fa-arrow-circle-down"></span> Antecedentes Fisiológicos
+            </a>
+          </div>
+          <div id="physiologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <textarea class="form-control" name="physiologicalBackground" id="physiologicalBackground" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#pathologicalBackgroundTab" aria-expanded="true"
+              aria-controls="pathologicalBackgroundTab">
+              <span class="fa fa-arrow-circle-down"></span> Antecedentes Patológicos
+            </a>
+          </div>
+          <div id="pathologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <textarea class="form-control" name="pathologicalBackground" id="pathologicalBackground" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#familyBackgroundTab" aria-expanded="true"
+              aria-controls="familyBackgroundTab">
+              <span class="fa fa-arrow-circle-down"></span> Antecedentes Heredofamiliares
+            </a>
+          </div>
+          <div id="familyBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <textarea class="form-control" name="familyBackground" id="familyBackground" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="consultations">
+      <div id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-info">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Collapsible Group Item #1
+            </a>
+          </div>
+          <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+              non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+              lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+              of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Collapsible Group Item #2
+            </a>
+          </div>
+          <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+              non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+              lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+              of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="complementary-methods">
+    </div>
+  </div>
+</div>

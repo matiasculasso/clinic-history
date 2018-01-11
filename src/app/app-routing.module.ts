@@ -7,9 +7,11 @@ import { PatientsEditComponent } from './patients/patients-edit/patients-edit.co
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'patients', component: PatientsBrowseComponent},
-  { path: 'patients/new', component: PatientsEditComponent},
-  { path: 'patients/edit', component: PatientsEditComponent},
+  { path: 'home', component: HomeComponent},
+  { path: 'patients', component: PatientsBrowseComponent },
+  { path: 'patients/new', component: PatientsEditComponent },
+  { path: 'patients:id/edit', component: PatientsEditComponent },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

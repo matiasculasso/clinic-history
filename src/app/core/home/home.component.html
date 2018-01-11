@@ -1,10 +1,19 @@
 <div class="jumbotron">
     <div class="container">
         <h2 class="display-3">Registro de Historias Clínicas</h2>
-        <p>Bienvenidos al sistema registro de pacientes del servicio de gastroenterología de la Clínica del Sol</p>
-        <p>
-            <a class="btn btn-primary btn-lg" routerLink="patients" role="button">Buscar Paciente »</a>
-            <a class="btn btn-success btn-lg" routerLink="patients/new" role="button">Nuevo Paciente »</a>
-        </p>
+        <h4>Bienvenidos al sistema registro de pacientes del servicio de gastroenterología de la Clínica del Sol.</h4>
+            <div *ngIf="(this.oidcSecurityService.getIsAuthorized() | async) === true" >
+                    <a class="btn btn-primary btn-lg" routerLink="patients" role="button">
+                        <span class="fa fa-search" ></span>Buscar Paciente »
+                    </a>
+                    <a class="btn btn-success btn-lg" [routerLink]="['/', 'patients', 'new']" role="button">
+                        <span class="fa fa-user-plus"></span>Nuevo Paciente »
+                    </a>
+            </div>
+            <br>        
+            <div *ngIf="(this.oidcSecurityService.getIsAuthorized() | async) === false" >
+                <a class="btn btn-default btn-lg" (click)="login()" role="button">
+                    <span class="fa fa-sign-in" ></span> Iniciar sesión »</a>
+            </div>                                        
     </div>
 </div>

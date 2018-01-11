@@ -8,6 +8,10 @@
     border-bottom-left-radius: 4px;
 }
 
+.nav-main-menu {
+    font-size: 20px;
+}
+
 input[type="file"]{
     z-index: 999;
     line-height: 0;

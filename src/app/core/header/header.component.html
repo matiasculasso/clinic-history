@@ -1,13 +1,26 @@
-<nav class="navbar navbar-default">
+<nav class="navbar  navbar-inverse nav-main-menu">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a routerLink="/patients" class="navbar-brand">Registro de Pacientes</a>
+    <div class="navbar-header">     
+      <a class="navbar-brand">Servicio de Gastro</a>
     </div>
 
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse nav-main-menu">
       <ul class="nav navbar-nav">
-        <li><a routerLink="/">Home</a></li>  
-        <li><a routerLink="/patients">Pacientes</a></li>        
+        <li><a routerLink="/"><span class="fa fa-home"></span> Home  </a></li>
+        <li *ngIf="(this.oidcSecurityService.getIsAuthorized() | async) === true" >          
+          <a routerLink="/patients"><span class="fa fa-users"></span>Pacientes</a></li>        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">      
+          <li *ngIf="(this.oidcSecurityService.getIsAuthorized() | async) === false">
+            <a (click)="login()" role="button"><span class="fa fa-sign-in"></span> Iniciar sesión</a></li>
+          <li *ngIf="(this.oidcSecurityService.getIsAuthorized() | async) === true" role="button" class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown">
+                <span class="fa fa-user-md" ></span>{{(this.oidcSecurityService.getUserData() | async).name}}
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a (click)="logout()"><span class="fa fa-sign-out" ></span> Cerrar Sesión</a></li>                
+              </ul>
+          </li>
       </ul>
     </div>
   </div>

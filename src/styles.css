@@ -27,3 +27,20 @@ input[type="file"]{
 span{
     margin-right: 10px;
 }
+
+.navbar .navbar-nav > li > a {
+    padding: 26px 12px;
+    }
+
+.image-container {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 150px;
+    height: 60px;
+}
+    
+    /* resize images */
+.image-container img {
+    width: 100%;
+    height: auto;
+}

@@ -10,7 +10,7 @@ export class ConfigService {
         openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/';
         openIDImplicitFlowConfiguration.client_id = 'clinic-hitstory';
         openIDImplicitFlowConfiguration.response_type = 'id_token token';
-        openIDImplicitFlowConfiguration.scope = 'openid dataEventRecords';
+        openIDImplicitFlowConfiguration.scope = 'openid patients';
         openIDImplicitFlowConfiguration.post_logout_redirect_uri = 'http://localhost:4200/';
         openIDImplicitFlowConfiguration.start_checksession = false;
         openIDImplicitFlowConfiguration.silent_renew = true;

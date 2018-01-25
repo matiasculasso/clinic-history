@@ -1,5 +1,4 @@
 import { RequestOptions } from '@angular/http';
-import { RequestInterceptor, RequestOptionsService } from './request-interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -27,9 +26,7 @@ import { AuthGuard } from './auth-guar.service';
   ],
   providers: [ConfigService,
     OidcSecurityService,
-    AuthGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
-    { provide: RequestOptions, useClass: RequestOptionsService }
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

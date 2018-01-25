@@ -7,7 +7,6 @@ import { AppRoutingModule } from '../app-routing.module';
 
 import { PatientsBrowseComponent } from './patients-browse/patients-browse.component';
 import { PatientsEditComponent } from './patients-edit/patients-edit.component';
-import { RequestInterceptor, RequestOptionsService } from '../request-interceptor';
 
 @NgModule({
   declarations: [
@@ -23,13 +22,6 @@ import { RequestInterceptor, RequestOptionsService } from '../request-intercepto
     PatientsBrowseComponent,
     PatientsEditComponent
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RequestInterceptor,
-      multi: true
-    },
-    { provide: RequestOptions, useClass: RequestOptionsService }
-],
+  providers: [],
 })
 export class PatientsModule {}

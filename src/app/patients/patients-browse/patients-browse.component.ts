@@ -22,7 +22,7 @@ export class PatientsBrowseComponent implements OnInit {
 
   private LoadData() {
     const h = new HttpHeaders({
-      'Authorization':  `Bearer da3156348695d7fbdb006c595dad45be20999a65bb3c2566427e326992bc1cd0`
+      'Authorization':  `Bearer d8bcc7dd759bcc56fd23db9c54b1349b99125f121010a21f9c4d90c7bdf0c1cf`
     });
 
     this.error = false;

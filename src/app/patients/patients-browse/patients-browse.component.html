@@ -1,24 +1,64 @@
-<div class="container-fluid">
-  <div *ngIf="">
+<div class="container-fluid"> 
+  <div *ngIf="error">
+      <div class="alert alert-danger">
+          <strong>Error!</strong> Error tratando de obtener pacientes
+          <strong>Detalles:</strong> {{error}}
+      </div>
   </div>
-  <div>
-    <table class="table table-hover table-responsive">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Lastname</th>
-          <th>IdentificationNumber</th>         
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of items">
-          <td>{{item.name}}</td>
-          <td>{{item.lastName}}</td>
-          <td>{{item.identificationNumber}}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div *ngIf="!error">    
+    <div id="custom-search-input">
+          <div class="input-group col-md-12">
+              <input type="text"
+                [(ngModel)]="filter"
+                (keyup)="loadData()"
+                class="form-control input-md" 
+                placeholder="Buscar por Nombre, Apellido, DNI o Diagnóstico" />
+              <span class="input-group-btn">
+                  <button class="btn btn-info btn-md" type="button">
+                      <i class="glyphicon glyphicon-search"></i>
+                  </button>
+              </span>
+          </div>         
+    </div>
+    <br/>
+    <div *ngIf="loading">
+        Buscando...
+    </div>
+    <div *ngIf="!loading" >
+        <div *ngIf="(filter === undefined || filter.length < 3) && (items === undefined || items.length === 0)">
+            <div class="alert alert-info">
+              Escriba al menos tres letras para obtener resultados
+          </div>
+        </div>
+        <div *ngIf="filter && filter.length > 3 && items && items.length === 0 ">
+            <div class="alert alert-warning">
+                <strong>Sin Datos!</strong> No se encotraron datos, por favor revise los filtros de busqueda.              
+              </div>
+        </div>
+      <div  *ngIf="items &&  items.length > 0" >           
+        <table class="table table-hover table-responsive">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>DNI</th>
+              <th>Edad</th>
+              <th>Motivo de Consulta</th>
+              <th>Diagnóstico</th>                      
+            </tr>
+          </thead>
+          <tbody>
+            <tr (click)="edit(item.id)" *ngFor="let item of items">
+              <td [innerHTML]="item.name | highlight : filter"></td>
+              <td [innerHTML]="item.lastName | highlight : filter"></td>
+              <td [innerHTML]="item.identificationNumber | highlight : filter"></td>
+              <td >{{item.birthDate|age}}</td>
+              <td [innerHTML]="item.consultationReason | highlight : filter"></td>
+              <td [innerHTML]="item.diagnostic | highlight : filter" ></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
   </div>
-</div>
-
-{{items | json}}
+    </div>    
+  </div>

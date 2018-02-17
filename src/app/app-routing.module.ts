@@ -8,11 +8,10 @@ import { AuthGuard } from './auth-guar.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent},
   { path: 'patients', component: PatientsBrowseComponent, canActivate: [AuthGuard] },
   { path: 'patients/new', component: PatientsEditComponent, canActivate: [AuthGuard] },
-  { path: 'patients:id/edit', component: PatientsEditComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: 'home' }
+  { path: 'patients/:id/edit', component: PatientsEditComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

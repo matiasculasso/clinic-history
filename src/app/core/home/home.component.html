@@ -3,7 +3,7 @@
         <h2 class="display-3">Servicio de Gastroenterología | Registro de Historias Clínicas</h2>        
         <h4>Bienvenidos al sistema registro de pacientes del servicio de gastroenterología de la Clínica del Sol.</h4>
             <div *ngIf="(this.oidcSecurityService.getIsAuthorized() | async) === true" >
-                    <a class="btn btn-primary btn-lg" routerLink="patients" role="button">
+                    <a class="btn btn-primary btn-lg" [routerLink]="['/', 'patients']" role="button">
                         <span class="fa fa-search" ></span>Buscar Paciente »
                     </a>
                     <a class="btn btn-success btn-lg" [routerLink]="['/', 'patients', 'new']" role="button">

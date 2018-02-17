@@ -1,41 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import { GlobalSettings } from '../../global-settings';
 import { PatiensGridModel } from '../../models/patiens-grid-model';
+import { HttpHelperService } from '../../helpers/httpHelper.service';
+
 
 @Component({
   selector: 'app-patients-browse',
   templateUrl: './patients-browse.component.html'
 })
-export class PatientsBrowseComponent implements OnInit {
+export class PatientsBrowseComponent {
 
   public loading = false;
-  public error = false;
+  public error: any;
   public items: PatiensGridModel[];
+  public filter: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpHelper: HttpHelperService, private router: Router) { }
 
-  ngOnInit() {
-    this.LoadData();
+  public edit(id: number) {
+    this.router.navigate(['patients', id, 'edit']);
   }
 
-  private LoadData() {
-    const h = new HttpHeaders({
-      'Authorization':  `Bearer d8bcc7dd759bcc56fd23db9c54b1349b99125f121010a21f9c4d90c7bdf0c1cf`
-    });
+  public loadData(): void {
+    if (this.filter.length < 3) {
+      return;
+    }
 
     this.error = false;
     this.loading = true;
-    this.http.get<PatiensGridModel[]>(GlobalSettings.API_ENDPOINT + 'patients?filter=arg', { headers: h } )
-    .subscribe(data => {
+    this.httpHelper.HttpGet('patients', this.filter)
+    .subscribe((data: PatiensGridModel[])  => {
         this.items = data;
         this.loading = false;
     }, error => {
         this.loading = false;
-        this.error = true;
-        console.log('Error trying to get patients');
+        this.error = error;
+        console.log(`Error trying to get patients, Error Details: ${error}`);
     });
   }
-
 }

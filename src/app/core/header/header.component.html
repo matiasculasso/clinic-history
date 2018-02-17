@@ -11,7 +11,11 @@
       <ul class="nav navbar-nav">
         <li><a routerLink="/"><span class="fa fa-home"></span> Home  </a></li>
         <li *ngIf="(this.oidcSecurityService.getIsAuthorized() | async) === true" >          
-          <a routerLink="/patients"><span class="fa fa-users"></span>Pacientes</a></li>        
+          <a routerLink="/patients"><span class="fa fa-users"></span>Pacientes</a>
+        </li>
+        <li *ngIf="(this.oidcSecurityService.getIsAuthorized() | async) === true" >          
+            <a [routerLink]="['/', 'patients', 'new']"><span class="fa fa-user-plus"></span>Nuevo Paciente</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">      
           <li *ngIf="(this.oidcSecurityService.getIsAuthorized() | async) === false">

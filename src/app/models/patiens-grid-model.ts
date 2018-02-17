@@ -1,8 +1,9 @@
 export interface PatiensGridModel {
+    id: number;
     name: string;
     lastName: string;
     identificationNumber: string;
     consultationReason: string;
     diagnostic: string;
-    age: number;
+    dirthDate: string;
 }

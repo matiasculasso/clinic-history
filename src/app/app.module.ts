@@ -11,6 +11,7 @@ import { CoreModule } from './core/core.module';
 import { PatientsModule } from './patients/patients.module';
 import { ConfigService } from './config.service';
 import { AuthGuard } from './auth-guar.service';
+import { HttpHelperService } from './helpers/httpHelper.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AuthGuard } from './auth-guar.service';
   ],
   providers: [ConfigService,
     OidcSecurityService,
-    AuthGuard
+    AuthGuard,
+    HttpHelperService
   ],
   bootstrap: [AppComponent]
 })

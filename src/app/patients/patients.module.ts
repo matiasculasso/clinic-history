@@ -5,10 +5,20 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
 
+import { MomentModule } from 'angular2-moment';
+
 import { AgePipe } from '../pipes/agePipe';
 import { HighlightPipe } from '../pipes/highlightPipe';
 import { PatientsBrowseComponent } from './patients-browse/patients-browse.component';
 import { PatientsEditComponent } from './patients-edit/patients-edit.component';
+
+import * as moment from 'moment';
+import * as toastr from 'toastr';
+
+moment.locale('es-Es');
+
+toastr.options.positionClass = 'toast-bottom-right';
+toastr.options.newestOnTop = false;
 
 @NgModule({
   declarations: [
@@ -22,7 +32,8 @@ import { PatientsEditComponent } from './patients-edit/patients-edit.component';
     HttpClientModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MomentModule
   ],
   exports: [
     PatientsBrowseComponent,

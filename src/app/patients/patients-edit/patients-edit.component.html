@@ -25,180 +25,198 @@
       </a>
     </li>
   </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="personal-information">
-      <div class="form-horizontal">
-        <div class="form-group col-lg-6 col-md-6">
-          <label for="name" class="col-sm-3 control-label">Nombre</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del paciente">
-          </div>
-        </div>
-        <div class="form-group col-lg-6 col-md-6">
-          <label for="lastname" class="col-sm-3 control-label">Apellido</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellido del paciente">
-          </div>
-        </div>
-        <div class="form-group col-lg-6 col-md-6">
-          <label for="dni" class="col-sm-3 control-label">DNI</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="dni" id="dni" placeholder="Documento">
-          </div>
-        </div>
-        <div class="form-group col-lg-6 col-md-6">
-          <label for="birthDate" class="col-sm-3 control-label">Fecha Nacimiento</label>
-          <div class="col-sm-9">
-            <input type="date" class="form-control" name="birthDate" id="birthDate" placeholder="04/02/2001">
-          </div>
-        </div>
-        <div class="form-group col-lg-6 col-md-6">
-          <label for="consultationReason" class="col-sm-3 control-label">Consulta</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="consultationReason" id="consultationReason" placeholder="Motivo de la consulta">
-          </div>
-        </div>
-        <div class="form-group col-lg-6 col-md-6">
-          <label for="socialSecurity" class="col-sm-3 control-label">Obra Social</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="socialSecurity" id="socialSecurity" placeholder="Seleccione una obra social">
-          </div>
-        </div>
-        <div class="form-group col-lg-6 col-md-6">
-          <label for="diagnostic" class="col-sm-3 control-label">Diagnóstico </label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="diagnostic" id="diagnostic" placeholder="Seleccione un diagnóstico">
-          </div>
-        </div>
-        <div class="form-group col-lg-6 col-md-6">
-          <label for="origin" class="col-sm-3 control-label">Procedencia</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="origin" id="origin" placeholder="Procedencia">
-          </div>
-        </div>
-        <div class="form-group col-lg-6 col-md-6">
-          <label for="contactPhones" class="col-sm-3 control-label">Teléfonos</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="contactPhones" id="contactPhones" placeholder="0343-154877675, 4567465">
-          </div>
-        </div>
-        <div class="form-group col-lg-6 col-md-9">
-          <label for="email" class="col-sm-3 control-label">Email</label>
-          <div class="col-sm-9">
-            <input type="email" class="form-control" name="email" id="email" placeholder="ejemplo@mail.com">
-          </div>
-        </div>
-        <div class="form-group"></div>
-      </div>
-    </div>
-    <div class="tab-pane" id="history">
-      <div id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-info">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#prerinatologicalBackgroundTab" aria-expanded="true"
-              aria-controls="prerinatologicalBackgroundTab">
-              <span class="fa fa-arrow-circle-down"></span> Antecedentes Perinatologícos
-            </a>
-          </div>
-          <div id="prerinatologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-              <textarea class="form-control" name="prerinatologicalBackground" id="prerinatologicalBackground" rows="5"></textarea>
+  <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+    <div class="tab-content">
+      <div formGroupName="personalInformation" class="tab-pane active" id="personal-information">
+        <div class="form-horizontal">
+          <div class="form-group col-lg-6 col-md-6">
+            <label for="name" class="col-sm-3 control-label">Nombre</label>
+            <div class="col-sm-9">
+              <input formControlName="name" type="text" class="form-control" name="name" id="name" placeholder="Nombre del paciente">
             </div>
           </div>
-        </div>
-        <div class="panel panel-info">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#epidemiologicalBackgroundTab" aria-expanded="true"
-              aria-controls="epidemiologicalBackgroundTab">
-              <span class="fa fa-arrow-circle-down"></span> Antecedentes Epidemiológicos
-            </a>
-          </div>
-          <div id="epidemiologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-              <textarea class="form-control" name="epidemiologicalBackground" id="epidemiologicalBackground" rows="5"></textarea>
+          <div class="form-group col-lg-6 col-md-6">
+            <label for="lastname" class="col-sm-3 control-label">Apellido</label>
+            <div class="col-sm-9">
+              <input formControlName="lastname" type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellido del paciente">
             </div>
           </div>
-        </div>
-        <div class="panel panel-info">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#physiologicalBackgroundTab" aria-expanded="true"
-              aria-controls="physiologicalBackgroundTab">
-              <span class="fa fa-arrow-circle-down"></span> Antecedentes Fisiológicos
-            </a>
-          </div>
-          <div id="physiologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-              <textarea class="form-control" name="physiologicalBackground" id="physiologicalBackground" rows="5"></textarea>
+          <div class="form-group col-lg-6 col-md-6">
+            <label for="dni" class="col-sm-3 control-label">DNI</label>
+            <div class="col-sm-9">
+              <input formControlName="dni" type="text" class="form-control" name="dni" id="dni" placeholder="Documento">
             </div>
           </div>
-        </div>
-        <div class="panel panel-info">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#pathologicalBackgroundTab" aria-expanded="true"
-              aria-controls="pathologicalBackgroundTab">
-              <span class="fa fa-arrow-circle-down"></span> Antecedentes Patológicos
-            </a>
-          </div>
-          <div id="pathologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-              <textarea class="form-control" name="pathologicalBackground" id="pathologicalBackground" rows="5"></textarea>
+          <div class="form-group col-lg-6 col-md-6">
+            <label for="birthDate" class="col-sm-3 control-label">Fecha Nacimiento</label>
+            <div class="col-sm-9">
+              <input formControlName="birthDate" type="date" class="form-control" name="birthDate" id="birthDate" placeholder="04/02/2001">
             </div>
           </div>
-        </div>
-        <div class="panel panel-info">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#familyBackgroundTab" aria-expanded="true"
-              aria-controls="familyBackgroundTab">
-              <span class="fa fa-arrow-circle-down"></span> Antecedentes Heredofamiliares
-            </a>
-          </div>
-          <div id="familyBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-              <textarea class="form-control" name="familyBackground" id="familyBackground" rows="5"></textarea>
+          <div class="form-group col-lg-6 col-md-6">
+            <label for="consultationReason" class="col-sm-3 control-label">Consulta</label>
+            <div class="col-sm-9">
+              <input formControlName="consultationReason" type="text" class="form-control" name="consultationReason" id="consultationReason"
+                placeholder="Motivo de la consulta">
             </div>
           </div>
+          <div class="form-group col-lg-6 col-md-6">
+            <label for="socialSecurityId" class="col-sm-3 control-label">Obra Social</label>
+            <div class="col-sm-9">
+              <select class='form-control' formControlName="socialSecurityId">
+                    <option class='option' *ngFor='let sc of socialSecurities' 
+                    [value]="sc.id" placeholder="Seleccione una obra social" >{{sc.name}}</option>
+              </select>  
+            </div>                          
+          </div>
+          <div class="form-group col-lg-6 col-md-6">
+            <label for="diagnosticId" class="col-sm-3 control-label">Diagnóstico </label>
+            <div class="col-sm-9">
+                <select class='form-control' formControlName="diagnosticId">
+                    <option class='option' *ngFor='let d of diagnostics' 
+                    [value]="d.id" placeholder="Seleccione un diagnóstico" >{{d.name}}</option>
+                </select>    
+            </div>
+          </div>
+          <div class="form-group col-lg-6 col-md-6">
+            <label for="origin" class="col-sm-3 control-label">Procedencia</label>
+            <div class="col-sm-9">
+              <input formControlName="origin" type="text" class="form-control" name="origin" id="origin" placeholder="Procedencia">
+            </div>
+          </div>
+          <div class="form-group col-lg-6 col-md-6">
+            <label for="contactPhones" class="col-sm-3 control-label">Teléfonos</label>
+            <div class="col-sm-9">
+              <input formControlName="contactPhones" type="text" class="form-control" name="contactPhones" id="contactPhones" placeholder="0343-154877675, 4567465">
+            </div>
+          </div>
+          <div class="form-group col-lg-6 col-md-9">
+            <label for="email" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-9">
+              <input formControlName="email" type="email" class="form-control" name="email" id="email" placeholder="ejemplo@mail.com">
+            </div>
+          </div>
+          <div class="form-group"></div>
         </div>
       </div>
-    </div>
-    <div class="tab-pane" id="consultations">
-      <div id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-info">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Collapsible Group Item #1
-            </a>
-          </div>
-          <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-              non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-              lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
-              of them accusamus labore sustainable VHS.
+      <div formGroupName="history" class="tab-pane" id="history">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-info">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#prerinatologicalBackgroundTab" aria-expanded="true"
+                aria-controls="prerinatologicalBackgroundTab">
+                <span class="fa fa-arrow-circle-down"></span> Antecedentes Perinatologícos
+              </a>
+            </div>
+            <div id="prerinatologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <textarea formControlName="prerinatologicalBackground" class="form-control" name="prerinatologicalBackground" id="prerinatologicalBackground"
+                  rows="5">
+                </textarea>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="panel panel-info">
-          <div class="panel-heading" role="tab" id="headingTwo">
-            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Collapsible Group Item #2
-            </a>
+          <div class="panel panel-info">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#epidemiologicalBackgroundTab" aria-expanded="true"
+                aria-controls="epidemiologicalBackgroundTab">
+                <span class="fa fa-arrow-circle-down"></span> Antecedentes Epidemiológicos
+              </a>
+            </div>
+            <div id="epidemiologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <textarea formControlName="epidemiologicalBackground" class="form-control" name="epidemiologicalBackground" id="epidemiologicalBackground"
+                  rows="5">
+                </textarea>
+              </div>
+            </div>
           </div>
-          <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-            <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-              non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-              lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
-              of them accusamus labore sustainable VHS.
+          <div class="panel panel-info">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#physiologicalBackgroundTab" aria-expanded="true"
+                aria-controls="physiologicalBackgroundTab">
+                <span class="fa fa-arrow-circle-down"></span> Antecedentes Fisiológicos
+              </a>
+            </div>
+            <div id="physiologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <textarea formControlName="physiologicalBackground" class="form-control" name="physiologicalBackground" id="physiologicalBackground"
+                  rows="5">
+                </textarea>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-info">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#pathologicalBackgroundTab" aria-expanded="true"
+                aria-controls="pathologicalBackgroundTab">
+                <span class="fa fa-arrow-circle-down"></span> Antecedentes Patológicos
+              </a>
+            </div>
+            <div id="pathologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <textarea formControlName="pathologicalBackground" class="form-control" name="pathologicalBackground" id="pathologicalBackground"
+                  rows="5">
+                </textarea>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-info">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <a class="btn btn-info" data-toggle="collapse" data-parent="#accordion" href="#familyBackgroundTab" aria-expanded="true"
+                aria-controls="familyBackgroundTab">
+                <span class="fa fa-arrow-circle-down"></span> Antecedentes Heredofamiliares
+              </a>
+            </div>
+            <div id="familyBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <textarea formControlName="familyBackground" class="form-control" name="familyBackground" id="familyBackground" rows="5">
+                </textarea>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div formGroupName="consultation" class="tab-pane" id="consultations">
+        <div>
+          <button class="btn btn-info" (click)="showNewConsultation=!showNewConsultation" type="submit">Nueva Consulta</button>
+          <div *ngIf="showNewConsultation" class="panel panel-info">
+            <div class="panel-body">
+              <textarea formControlName="description" class="form-control" name="description" id="description" rows="5">
+              </textarea>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <div *ngIf="consultations && consultations.length" class="panel panel-info">
+          <div class="panel-heading">
+            <h4>Historial de Consultas</h4>
+          </div>
+          <div class="panel-body">
+            <div id="accordion" role="tablist" aria-multiselectable="true">
+              <div *ngFor="let c of consultations" class="panel panel-default">
+                <div class="panel-heading" role="tab" [id]="'heading-' + c.id">
+                  <a data-toggle="collapse" data-parent="#accordion" [href]="'#collapse-' + c.id" 
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Fecha: {{c.date | amParse:'DD/MM/YYYY' | amDateFormat:'LL'}}, Atendido Por: Dra: {{c.userName}}
+                  </a>
+                </div>
+                <div [id]="'collapse-' + c.id" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body">
+                    {{c.description}}
+                  </div>
+                </div>
+              </div>              
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="tab-pane" id="complementary-methods">
+      </div>
+      <button class="btn btn-success" [disabled]="!patientForm.valid" type="submit">Guardar</button>
+      <button class="btn btn-danger" [disabled]="!patientForm.touched" (click)="onCancelClick()" type="button">Cancelar</button>
     </div>
-    <div class="tab-pane" id="complementary-methods">
-    </div>
-  </div>
+  </form>
 </div>

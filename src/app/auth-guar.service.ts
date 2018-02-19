@@ -11,7 +11,8 @@ export class AuthGuard implements CanActivate {
   constructor(private oidcSecurityService: OidcSecurityService) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    return this.oidcSecurityService.getIsAuthorized();
+    return true;
+    // return this.oidcSecurityService.getIsAuthorized();
   }
 }
 

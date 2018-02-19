@@ -6,12 +6,21 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AuthModule, OidcSecurityService, OpenIDImplicitFlowConfiguration } from 'angular-auth-oidc-client';
+import { MomentModule } from 'angular2-moment';
 
 import { CoreModule } from './core/core.module';
 import { PatientsModule } from './patients/patients.module';
 import { ConfigService } from './config.service';
 import { AuthGuard } from './auth-guar.service';
 import { HttpHelperService } from './helpers/httpHelper.service';
+
+import * as moment from 'moment';
+import * as toastr from 'toastr';
+
+moment.locale('es-Es');
+
+toastr.options.positionClass = 'toast-bottom-right';
+toastr.options.newestOnTop = false;
 
 @NgModule({
   declarations: [
@@ -23,7 +32,8 @@ import { HttpHelperService } from './helpers/httpHelper.service';
     AuthModule.forRoot(),
     AppRoutingModule,
     CoreModule,
-    PatientsModule
+    PatientsModule,
+    MomentModule
   ],
   providers: [ConfigService,
     OidcSecurityService,

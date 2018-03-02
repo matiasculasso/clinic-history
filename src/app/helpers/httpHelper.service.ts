@@ -12,11 +12,15 @@ export class HttpHelperService {
    constructor(private http: HttpClient, private oidcSecurityService: OidcSecurityService) {
    }
 
-   public HttpGet(collection: string, filter: string): Observable<Object[]> {
+   public HttpGet(collection: string, filter?: string): Observable<Object[]> {
     const oidcToken = this.oidcSecurityService.getToken();
-    const h = new HttpHeaders({
+    const headers = new HttpHeaders({
         'Authorization':  `Bearer ${oidcToken}`
       });
-      return this.http.get<Object[]>(GlobalSettings.API_ENDPOINT + `${collection}?filter=${filter}`, { headers: h } );
+
+      if (filter) {
+        return this.http.get<Object[]>(GlobalSettings.API_ENDPOINT + `${collection}?filter=${filter}`, { headers } );
+      }
+      return this.http.get<Object[]>(GlobalSettings.API_ENDPOINT + `${collection}`, { headers } );
    }
 }

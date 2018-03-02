@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Consultation } from '../../models/consultation-model';
+import { HttpHelperService } from '../../helpers/httpHelper.service';
 
 import * as moment from 'moment';
 
@@ -16,7 +17,7 @@ export class PatientsEditComponent implements OnInit {
   socialSecurities: any[];
   diagnostics: any[];
 
-  constructor() {
+  constructor(private httpClient: HttpHelperService) {
     this.loadData();
     this.loadSocialSecurities();
     this.loadDiagnostics();
@@ -78,10 +79,14 @@ export class PatientsEditComponent implements OnInit {
   }
 
   private loadDiagnostics(): void {
-    this.diagnostics =
-    [ { id: 1, name: 'Celiaquía' } , { id: 2, name: 'Gastroenterits' }, { id: 2, name: 'Higado Graso' }];
+    this.httpClient.HttpGet('diagnostics')
+      .subscribe((data) => { this.diagnostics = data; }
+    );
   }
 
+  public typed(value: any): void {
+    console.log('New search input: ', value);
+  }
 
   public onSubmit(): void {
     console.log(this.patientForm);
@@ -90,5 +95,4 @@ export class PatientsEditComponent implements OnInit {
   public onCancel(): void {
 
   }
-
 }

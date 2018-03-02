@@ -71,7 +71,7 @@
           </div>
           <div class="form-group col-lg-6 col-md-6">
             <label for="diagnosticId" class="col-sm-3 control-label">Diagnóstico </label>
-            <div class="col-sm-9">
+            <div class="col-sm-9">               
                 <select class='form-control' formControlName="diagnosticId">
                     <option class='option' *ngFor='let d of diagnostics' 
                     [value]="d.id" placeholder="Seleccione un diagnóstico" >{{d.name}}</option>

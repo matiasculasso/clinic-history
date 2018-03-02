@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
 
 import { MomentModule } from 'angular2-moment';
+import { NgxSelectModule } from 'ngx-select-ex';
 
 import { AgePipe } from '../pipes/agePipe';
 import { HighlightPipe } from '../pipes/highlightPipe';
@@ -33,7 +34,8 @@ toastr.options.newestOnTop = false;
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MomentModule
+    MomentModule,
+    NgxSelectModule
   ],
   exports: [
     PatientsBrowseComponent,

@@ -63,19 +63,17 @@
           <div class="form-group col-lg-6 col-md-6">
             <label for="socialSecurityId" class="col-sm-3 control-label">Obra Social</label>
             <div class="col-sm-9">
-              <select class='form-control' formControlName="socialSecurityId">
-                    <option class='option' *ngFor='let sc of socialSecurities' 
-                    [value]="sc.id" placeholder="Seleccione una obra social" >{{sc.name}}</option>
-              </select>  
+              <ngx-select [items]="socialSecurities" optionValueField="id"  optionTextField="name"
+                formControlName="socialSecurityId">
+              </ngx-select>
             </div>                          
           </div>
           <div class="form-group col-lg-6 col-md-6">
             <label for="diagnosticId" class="col-sm-3 control-label">Diagnóstico </label>
-            <div class="col-sm-9">               
-                <select class='form-control' formControlName="diagnosticId">
-                    <option class='option' *ngFor='let d of diagnostics' 
-                    [value]="d.id" placeholder="Seleccione un diagnóstico" >{{d.name}}</option>
-                </select>    
+            <div class="col-sm-9">
+                <ngx-select [items]="diagnostics" optionValueField="id"  optionTextField="name"
+                  formControlName="diagnosticId">
+                </ngx-select>
             </div>
           </div>
           <div class="form-group col-lg-6 col-md-6">

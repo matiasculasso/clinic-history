@@ -5,5 +5,5 @@ export interface PatiensGridModel {
     identificationNumber: string;
     consultationReason: string;
     diagnostic: string;
-    dirthDate: string;
+    birthDate: string;
 }

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MomentModule } from 'angular2-moment';
 import { NgxSelectModule } from 'ngx-select-ex';
@@ -12,6 +13,7 @@ import { AgePipe } from '../pipes/agePipe';
 import { HighlightPipe } from '../pipes/highlightPipe';
 import { PatientsBrowseComponent } from './patients-browse/patients-browse.component';
 import { PatientsEditComponent } from './patients-edit/patients-edit.component';
+import { DialogComponent } from '../controls/dialog.component';
 
 import * as moment from 'moment';
 import * as toastr from 'toastr';
@@ -26,7 +28,8 @@ toastr.options.newestOnTop = false;
     PatientsBrowseComponent,
     PatientsEditComponent,
     AgePipe,
-    HighlightPipe
+    HighlightPipe,
+    DialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -35,7 +38,8 @@ toastr.options.newestOnTop = false;
     FormsModule,
     ReactiveFormsModule,
     MomentModule,
-    NgxSelectModule
+    NgxSelectModule,
+    BrowserAnimationsModule,
   ],
   exports: [
     PatientsBrowseComponent,

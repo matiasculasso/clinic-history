@@ -27,7 +27,7 @@
   </ul>
   <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
     <div class="tab-content">
-      <div formGroupName="personalInformation" class="tab-pane active" id="personal-information">
+      <div class="tab-pane active" id="personal-information">
         <div class="form-horizontal">
           <div class="form-group col-lg-6 col-md-6">
             <label for="name" class="col-sm-3 control-label">Nombre</label>
@@ -36,15 +36,15 @@
             </div>
           </div>
           <div class="form-group col-lg-6 col-md-6">
-            <label for="lastname" class="col-sm-3 control-label">Apellido</label>
+            <label for="lastName" class="col-sm-3 control-label">Apellido</label>
             <div class="col-sm-9">
-              <input formControlName="lastname" type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellido del paciente">
+              <input formControlName="lastName" type="text" class="form-control" name="lastName" id="lastName" placeholder="Apellido del paciente">
             </div>
           </div>
           <div class="form-group col-lg-6 col-md-6">
-            <label for="dni" class="col-sm-3 control-label">DNI</label>
+            <label for="identificationNumber" class="col-sm-3 control-label">DNI</label>
             <div class="col-sm-9">
-              <input formControlName="dni" type="text" class="form-control" name="dni" id="dni" placeholder="Documento">
+              <input formControlName="identificationNumber" type="text" class="form-control" name="identificationNumber" id="identificationNumber" placeholder="Documento">
             </div>
           </div>
           <div class="form-group col-lg-6 col-md-6">
@@ -97,7 +97,7 @@
           <div class="form-group"></div>
         </div>
       </div>
-      <div formGroupName="history" class="tab-pane" id="history">
+      <div class="tab-pane" id="history">
         <div id="accordion" role="tablist" aria-multiselectable="true">
           <div class="panel panel-info">
             <div class="panel-heading" role="tab" id="headingOne">
@@ -177,7 +177,7 @@
       </div>
       <div formGroupName="consultation" class="tab-pane" id="consultations">
         <div>
-          <button class="btn btn-info" (click)="showNewConsultation=!showNewConsultation" type="submit">Nueva Consulta</button>
+          <button class="btn btn-info" (click)="showNewConsultation=!showNewConsultation" type="button">Nueva Consulta</button>
           <div *ngIf="showNewConsultation" class="panel panel-info">
             <div class="panel-body">
               <textarea formControlName="description" class="form-control" name="description" id="description" rows="5">
@@ -208,8 +208,6 @@
             </div>
           </div>
         </div>
-
-
       </div>
       <div class="tab-pane" id="complementary-methods">
       </div>
@@ -218,3 +216,12 @@
     </div>
   </form>
 </div>
+<app-dialog [closable]="false"  [(visible)]="showDialog">
+  <div class="alert alert-warning">
+      <strong>Atención!</strong> Hay cambios sin guardar, seguro que desea salir?.
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-default" (click)="showDialog = !showDialog">Cancelar</button>
+      <button class="btn btn-danger" (click)="onConfirmCancelClick()">Salir</button>
+  </div>
+</app-dialog>

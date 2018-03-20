@@ -1,6 +1,16 @@
 export interface Consultation {
     id: number;
-    userName: string;
     date: Date;
-    description: string;
+    evolution: string;
+    physician: string;
+    patientId: number;
+    complementaryMethodRequested: boolean;
+    alimentation?: string;
+    comments?: string;
+    defecatoryHabit?: string;
+    length?: number;
+    physicalActivity?: string;
+    physicalExam?: string;
+    schoolPerformance?: string;
+    weight?: number;
 }

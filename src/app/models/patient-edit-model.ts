@@ -5,7 +5,7 @@ export interface PatiensEditModel {
     identificationNumber: string;
     consultationReason: string;
     diagnosticId?: number;
-    birthDate: Date;
+    birthDate: string;
     origin: string;
     contactPhones: string;
     email: string;

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
+import * as toastr from 'toastr';
 
 import { Consultation } from '../../models/consultation-model';
 import { HttpHelperService } from '../../helpers/httpHelper.service';
@@ -17,9 +18,12 @@ import { PatiensEditModel } from '../../models/patient-edit-model';
   templateUrl: './patients-edit.component.html'
 })
 export class PatientsEditComponent implements OnInit {
+  loading = false;
+  error: any;
   patientForm: FormGroup;
+  consultationsForm: FormGroup;
   showNewConsultation = false;
-  consultations: Consultation[];
+  consultations: any[];
   socialSecurities: any[];
   diagnostics: any[];
   showDialog = false;
@@ -27,36 +31,36 @@ export class PatientsEditComponent implements OnInit {
   collection = 'patients';
 
   constructor(private httpClient: HttpHelperService,
-      private router: Router,
-      private route: ActivatedRoute,
-      private location: Location)  {
-    this.loadSocialSecurities();
-    this.loadDiagnostics();
-   }
+    public formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location) {
 
-  ngOnInit() {
-    this.patientForm = new FormGroup({
-        'name': new FormControl(null, [Validators.required]),
-        'lastName': new FormControl(null, [Validators.required]),
-        'identificationNumber': new FormControl(null, [Validators.required]),
-        'birthDate': new FormControl(null, [Validators.required]),
-        'consultationReason': new FormControl(null, [Validators.required]),
-        'socialSecurityId': new FormControl(null, [Validators.required]),
-        'diagnosticId': new FormControl(null),
-        'origin': new FormControl(null),
-        'contactPhones': new FormControl(null),
-        'email': new FormControl(null),
-        'prerinatologicalBackground': new FormControl(null),
-        'epidemiologicalBackground': new FormControl(null),
-        'physiologicalBackground': new FormControl(null),
-        'pathologicalBackground': new FormControl(null),
-        'familyBackground': new FormControl(null),
-      'consultation': new FormGroup({
-        'description': new FormControl(null)
-      })
+    this.patientForm = this.formBuilder.group({
+      'name': new FormControl(null, [Validators.required]),
+      'lastName': new FormControl(null, [Validators.required]),
+      'identificationNumber': new FormControl(null, [Validators.required]),
+      'birthDate': new FormControl(null, [Validators.required]),
+      'consultationReason': new FormControl(null, [Validators.required]),
+      'socialSecurityId': new FormControl(null, [Validators.required]),
+      'diagnosticId': new FormControl(null),
+      'origin': new FormControl(null),
+      'contactPhones': new FormControl(null),
+      'email': new FormControl(null),
+      'prerinatologicalBackground': new FormControl(null),
+      'epidemiologicalBackground': new FormControl(null),
+      'physiologicalBackground': new FormControl(null),
+      'pathologicalBackground': new FormControl(null),
+      'familyBackground': new FormControl(null),
+      'consultation': new FormControl(null),
     });
 
-    this.route.params.subscribe( (params: Params) => {
+    this.loadSocialSecurities();
+    this.loadDiagnostics();
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
       const id = params['id'];
       if (id) {
         this.patientId = id;
@@ -67,14 +71,21 @@ export class PatientsEditComponent implements OnInit {
   }
 
   private loadData(id: string): void {
+    this.loading = true;
     this.httpClient.HttpGetEntity(this.collection, id)
-      .subscribe((data: PatiensEditModel) => {
-        console.log(data);
-        this.patchValue(data);
-      });
+      .subscribe(
+        (data: PatiensEditModel) => {
+          this.loading = false;
+          this.patchValue(data);
+        }, error => {
+          this.loading = false;
+          this.error = error;
+          toastr.error('Error al interntar traer los datos del paciente, error:' + error);
+        }
+      );
   }
 
-  private patchValue(value: {[key: string]: any}): void {
+  private patchValue(value: { [key: string]: any }): void {
     Object.keys(value).forEach(name => {
       if (this.patientForm.controls[name]) {
         this.patientForm.controls[name].patchValue(value[name]);
@@ -82,55 +93,40 @@ export class PatientsEditComponent implements OnInit {
     });
   }
 
+
   private loadConsultations(id: string): void {
-    this.consultations =
-    [
-      {
-        id: 1,
-        userName: 'Laura Depetri',
-        date: moment().toDate(),
-        description: 'lsdf.sd.fnsd.n,smkkljlll jlkjskljsdlkjfklsd /n lkjkljsdlkfjslkjflskdjflksjdlfk /n hdhjdhjdhjdh'
-      },
-      {
-        id: 2,
-        userName: 'Laura Depetri',
-        date:  moment().toDate(),
-        description: 'No datos'
-      }
-    ];
+    this.httpClient.HttpGet('consultations/' + id)
+      .subscribe((data) => { this.consultations = data; });
   }
 
   private loadSocialSecurities(): void {
     this.httpClient.HttpGet('social-securities')
-      .subscribe((data) => { this.socialSecurities = data; }
-    );
+      .subscribe((data) => { this.socialSecurities = data; });
   }
 
   private loadDiagnostics(): void {
     this.httpClient.HttpGet('diagnostics')
-      .subscribe((data) => { this.diagnostics = data; }
-    );
-  }
-
-  public typed(value: any): void {
-    console.log('New search input: ', value);
+      .subscribe((data) => { this.diagnostics = data; });
   }
 
   public onSubmit(): void {
     let httpAction = new Observable<Object>();
-    console.log(this.patientId);
+
+    console.log(this.patientForm.value);
     if (this.patientId) {
       httpAction = this.httpClient.HttpPut(this.collection, this.patientForm.value, this.patientId);
     } else {
       httpAction = this.httpClient.HttpPost(this.collection, this.patientForm.value);
     }
 
-    httpAction.subscribe( response => {
-        console.log(`OK, ID:--> ${response}`);
-        this.location.back();
-      },
+    httpAction.subscribe(response => {
+      console.log(`OK, ID:--> ${response}`);
+      this.patientId ? this.location.back() : this.router.navigate(['/', 'patients']);
+      toastr.success('Datos guardados correctamente:');
+    },
       error => {
-        console.log(`ERROR: --> ${error}`);
+        this.error = error;
+        toastr.error('Error al interntar guardar los datos del paciente, error:' + error);
       });
   }
 

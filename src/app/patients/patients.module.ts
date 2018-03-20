@@ -13,6 +13,8 @@ import { AgePipe } from '../pipes/agePipe';
 import { HighlightPipe } from '../pipes/highlightPipe';
 import { PatientsBrowseComponent } from './patients-browse/patients-browse.component';
 import { PatientsEditComponent } from './patients-edit/patients-edit.component';
+import { ConsultationComponent } from './consultations/consultation.component';
+import { ConsultationHistoryComponent } from './consultations/consultation-history.component';
 import { DialogComponent } from '../controls/dialog.component';
 
 import * as moment from 'moment';
@@ -27,6 +29,8 @@ toastr.options.newestOnTop = false;
   declarations: [
     PatientsBrowseComponent,
     PatientsEditComponent,
+    ConsultationComponent,
+    ConsultationHistoryComponent,
     AgePipe,
     HighlightPipe,
     DialogComponent

@@ -8,7 +8,7 @@
   <div *ngIf="!error">
     <div id="custom-search-input">
       <div class="input-group col-md-12">
-        <input type="text" [(ngModel)]="filter" (keyup)="loadData()" class="form-control input-md" placeholder="Buscar por Nombre, Apellido, DNI o Diagnóstico"
+        <input type="text" [(ngModel)]="filter" (keyup)="refresh()" class="form-control input-md" placeholder="Buscar por Nombre, Apellido, DNI o Diagnóstico"
         />
         <span class="input-group-btn">
           <button class="btn btn-info btn-md" type="button">
@@ -19,7 +19,7 @@
     </div>
     <br/>
     <div *ngIf="loading">
-      Buscando...
+      <img src="assets/loading.gif" class="img-responsive center-block loadgin-image">
     </div>
     <div *ngIf="!loading">
       <div *ngIf="(filter === undefined || filter.length < 3) && (items === undefined || items.length === 0)">

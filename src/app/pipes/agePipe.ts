@@ -10,9 +10,9 @@ export class AgePipe implements PipeTransform {
         const today = moment();
         const birthdate = moment(value);
         const years = today.diff(birthdate, 'years');
-        let html: string = years + ' Años ';
+        let html: string = years + ' A. ';
 
-        html += today.subtract(years, 'years').diff(birthdate, 'months') + ' Meses';
+        html += today.subtract(years, 'years').diff(birthdate, 'months') + ' M. ';
 
         return html;
     }

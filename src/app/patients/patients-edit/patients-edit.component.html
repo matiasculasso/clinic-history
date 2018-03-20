@@ -1,4 +1,13 @@
-<div class="comment-tabs">
+<div *ngIf="loading">
+    <img src="assets/loading.gif" class="img-responsive center-block loadgin-image">
+  </div>
+  <div *ngIf="error">
+    <div class="alert alert-danger">
+      <strong>Error!</strong> Error tratando de obtener pacientes
+      <strong>Detalles:</strong> {{error}}
+    </div>
+</div>
+<div *ngIf="!loading && !error" class="comment-tabs">
   <ul class="nav nav-tabs" role="tablist">
     <li class="active">
       <a role="tab" href="#personal-information" data-toggle="tab">
@@ -43,14 +52,19 @@
           </div>
           <div class="form-group col-lg-6 col-md-6">
             <label for="identificationNumber" class="col-sm-3 control-label">DNI</label>
-            <div class="col-sm-9">
-              <input formControlName="identificationNumber" type="text" class="form-control" name="identificationNumber" id="identificationNumber" placeholder="Documento">
+            <div class="col-sm-6">
+              <input formControlName="identificationNumber" type="text" class="form-control" name="identificationNumber" id="identificationNumber" placeholder="Nro. Documento">
             </div>
           </div>
           <div class="form-group col-lg-6 col-md-6">
             <label for="birthDate" class="col-sm-3 control-label">Fecha Nacimiento</label>
-            <div class="col-sm-9">
-              <input formControlName="birthDate" type="date" class="form-control" name="birthDate" id="birthDate" placeholder="04/02/2001">
+            <div class="col-sm-5">
+              <input formControlName="birthDate" type="date" class="form-control" name="birthDate" id="birthDate" placeholder="04/02/2001">              
+            </div>
+            <div *ngIf="patientForm.get('birthDate').value" class="col-sm-4">
+                <label class="control-label">
+                  Edad: {{patientForm.get('birthDate').value | age}}
+              </label>
             </div>
           </div>
           <div class="form-group col-lg-6 col-md-6">
@@ -109,7 +123,7 @@
             <div id="prerinatologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
                 <textarea formControlName="prerinatologicalBackground" class="form-control" name="prerinatologicalBackground" id="prerinatologicalBackground"
-                  rows="5">
+                  rows="7">
                 </textarea>
               </div>
             </div>
@@ -124,7 +138,7 @@
             <div id="epidemiologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
                 <textarea formControlName="epidemiologicalBackground" class="form-control" name="epidemiologicalBackground" id="epidemiologicalBackground"
-                  rows="5">
+                  rows="7">
                 </textarea>
               </div>
             </div>
@@ -139,7 +153,7 @@
             <div id="physiologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
                 <textarea formControlName="physiologicalBackground" class="form-control" name="physiologicalBackground" id="physiologicalBackground"
-                  rows="5">
+                  rows="7">
                 </textarea>
               </div>
             </div>
@@ -154,7 +168,7 @@
             <div id="pathologicalBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
                 <textarea formControlName="pathologicalBackground" class="form-control" name="pathologicalBackground" id="pathologicalBackground"
-                  rows="5">
+                  rows="7">
                 </textarea>
               </div>
             </div>
@@ -168,20 +182,19 @@
             </div>
             <div id="familyBackgroundTab" class="collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
-                <textarea formControlName="familyBackground" class="form-control" name="familyBackground" id="familyBackground" rows="5">
+                <textarea formControlName="familyBackground" class="form-control" name="familyBackground" id="familyBackground" rows="7">
                 </textarea>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div formGroupName="consultation" class="tab-pane" id="consultations">
+      <div class="tab-pane" id="consultations">
         <div>
           <button class="btn btn-info" (click)="showNewConsultation=!showNewConsultation" type="button">Nueva Consulta</button>
           <div *ngIf="showNewConsultation" class="panel panel-info">
             <div class="panel-body">
-              <textarea formControlName="description" class="form-control" name="description" id="description" rows="5">
-              </textarea>
+                <app-consultation formControlName="consultation" [disabled]="true" ></app-consultation>                
             </div>
           </div>
         </div>
@@ -192,16 +205,16 @@
           </div>
           <div class="panel-body">
             <div id="accordion" role="tablist" aria-multiselectable="true">
-              <div *ngFor="let c of consultations" class="panel panel-default">
-                <div class="panel-heading" role="tab" [id]="'heading-' + c.id">
+              <div  *ngFor="let c of consultations" class="panel panel-default">
+                <div class="panel-heading" role="tab" [id]="c.id">
                   <a data-toggle="collapse" data-parent="#accordion" [href]="'#collapse-' + c.id" 
                     aria-expanded="true" aria-controls="collapseOne">
-                    Fecha: {{c.date | amParse:'DD/MM/YYYY' | amDateFormat:'LL'}}, Atendido Por: Dra: {{c.userName}}
+                    Fecha: {{c.date | amParse:'DD-MM-YYYY HH:mm' | amDateFormat:'LL'}}, Atendido Por: Dra: {{c.physician}}
                   </a>
                 </div>
                 <div [id]="'collapse-' + c.id" class="collapse" role="tabpanel" aria-labelledby="headingOne">
                   <div class="panel-body">
-                    {{c.description}}
+                      <app-consultation-history [consultation]="c" ></app-consultation-history> 
                   </div>
                 </div>
               </div>              
@@ -225,3 +238,4 @@
       <button class="btn btn-danger" (click)="onConfirmCancelClick()">Salir</button>
   </div>
 </app-dialog>
+

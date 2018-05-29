@@ -1,35 +1,36 @@
 import { Injectable } from '@angular/core';
 import { OpenIDImplicitFlowConfiguration } from 'angular-auth-oidc-client';
 
+import { GlobalSettings } from './global-settings';
+
 @Injectable()
 export class ConfigService {
 
     GetOpenIdConfig (): OpenIDImplicitFlowConfiguration {
-        const openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
-        openIDImplicitFlowConfiguration.stsServer = 'http://matiasculasso-001-site1.btempurl.com';
-        openIDImplicitFlowConfiguration.redirect_url = 'http://clinic-history-app.herokuapp.com';
-        openIDImplicitFlowConfiguration.client_id = 'clinic-hitstory';
-        openIDImplicitFlowConfiguration.response_type = 'id_token token';
-        openIDImplicitFlowConfiguration.scope = 'openid profile patients';
-        openIDImplicitFlowConfiguration.post_logout_redirect_uri = 'http://clinic-history-app.herokuapp.com';
-        openIDImplicitFlowConfiguration.start_checksession = false;
-        openIDImplicitFlowConfiguration.silent_renew = true;
-        openIDImplicitFlowConfiguration.silent_renew_offset_in_seconds = 0;
-        openIDImplicitFlowConfiguration.post_login_route = '/patiens';
-        openIDImplicitFlowConfiguration.forbidden_route = '/home';
-        openIDImplicitFlowConfiguration.unauthorized_route = '/home';
-        openIDImplicitFlowConfiguration.auto_userinfo = true;
-        openIDImplicitFlowConfiguration.log_console_warning_active = true;
-        openIDImplicitFlowConfiguration.log_console_debug_active = false;
-        openIDImplicitFlowConfiguration.max_id_token_iat_offset_allowed_in_seconds = 10;
-        openIDImplicitFlowConfiguration.override_well_known_configuration = false;
-        openIDImplicitFlowConfiguration.override_well_known_configuration_url =
-            'http://matiasculasso-001-site1.btempurl.com/.well-known/openid-configuration/';
-        openIDImplicitFlowConfiguration.storage = localStorage;
+        const oidcConfig = new OpenIDImplicitFlowConfiguration();
+        oidcConfig.stsServer = GlobalSettings.SERVER_URL;
+        oidcConfig.redirect_url = GlobalSettings.CLIENT_URL;
+        oidcConfig.client_id = 'clinic-hitstory';
+        oidcConfig.response_type = 'id_token token';
+        oidcConfig.scope = 'openid profile patients';
+        oidcConfig.post_logout_redirect_uri = GlobalSettings.CLIENT_URL;
+        oidcConfig.start_checksession = false;
+        oidcConfig.silent_renew = true;
+        oidcConfig.silent_renew_offset_in_seconds = 0;
+        oidcConfig.post_login_route = '/patiens';
+        oidcConfig.forbidden_route = '/home';
+        oidcConfig.unauthorized_route = '/home';
+        oidcConfig.auto_userinfo = true;
+        oidcConfig.log_console_warning_active = true;
+        oidcConfig.log_console_debug_active = false;
+        oidcConfig.max_id_token_iat_offset_allowed_in_seconds = 10;
+        oidcConfig.override_well_known_configuration = false;
+        oidcConfig.override_well_known_configuration_url = GlobalSettings.SERVER_URL + '/.well-known/openid-configuration/';
+        oidcConfig.storage = localStorage;
 
         // if you need custom parameters
         // oidcSecurityService.setCustomRequestParameters({ 't4': 'ABC abc 123', 't3': 'wo' });
 
-        return openIDImplicitFlowConfiguration;
+        return oidcConfig;
     }
 }

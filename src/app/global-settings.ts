@@ -1,3 +1,3 @@
 export class GlobalSettings {
-    public static API_ENDPOINT = 'http://localhost:12000/api/';
+    public static API_ENDPOINT = 'http://matiasculasso-001-site1.btempurl.com/api/';
  }

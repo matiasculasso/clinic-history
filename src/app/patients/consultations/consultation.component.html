@@ -1,7 +1,7 @@
 <form [formGroup]="form">
   <div class="form-horizontal">
     <div class="form-group col-lg-12 col-md-12">
-      <label for="length" class="col-sm-2 control-label">Altura</label>
+      <label for="length" class="col-sm-2 control-label">Altura (cm)</label>
       <div class="col-sm-2">
         <input formControlName="length" 
           type="number" 
@@ -9,9 +9,9 @@
           min="0" step=".01" 
           class="form-control" 
           name="length" 
-          id="length"> cm
+          id="length"> 
       </div>
-      <label for="weight" class="col-sm-2 control-label">Peso</label>
+      <label for="weight" class="col-sm-2 control-label">Peso (Kg) </label>
       <div class="col-sm-2">
         <input formControlName="weight" 
           type="number" 
@@ -19,7 +19,7 @@
           min="0" step=".001" 
           class="form-control" 
           name="weight" 
-          id="weight"> Kg
+          id="weight">
       </div>
     </div>      
     <div class="form-group col-lg-12 col-md-12">

@@ -96,7 +96,7 @@ export class PatientsEditComponent implements OnInit {
 
   private loadConsultations(id: string): void {
     this.httpClient.HttpGet('consultations/' + id)
-      .subscribe((data) => { this.consultations = data; });
+      .subscribe((data) => {console.log(data); this.consultations = data; });
   }
 
   private loadSocialSecurities(): void {
@@ -112,7 +112,6 @@ export class PatientsEditComponent implements OnInit {
   public onSubmit(): void {
     let httpAction = new Observable<Object>();
 
-    console.log(this.patientForm.value);
     if (this.patientId) {
       httpAction = this.httpClient.HttpPut(this.collection, this.patientForm.value, this.patientId);
     } else {

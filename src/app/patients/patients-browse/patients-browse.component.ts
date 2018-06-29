@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { GlobalSettings } from '../../global-settings';
 import { PatiensGridModel } from '../../models/patiens-grid-model';
 import { HttpHelperService } from '../../helpers/httpHelper.service';
 

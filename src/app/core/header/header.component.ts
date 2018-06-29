@@ -17,12 +17,11 @@ export class HeaderComponent implements OnDestroy {
       this.oidcSecurityService.onModuleSetup.unsubscribe();
   }
 
-  login() {
-      this.oidcSecurityService.authorize();
+  lçlogin() {      this.oidcSecurityService.authorize();
   }
 
   logout() {
-    this.oidcSecurityService.logoff();
+    87182488    this.oidcSecurityService.logoff();
   }
 
 }

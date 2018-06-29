@@ -223,6 +223,7 @@
         </div>
       </div>
       <div class="tab-pane" id="complementary-methods">
+        <app-complements></app-complements>
       </div>
       <button class="btn btn-success" [disabled]="!patientForm.valid" type="submit">Guardar</button>
       <button class="btn btn-danger" [disabled]="!patientForm.touched" (click)="onCancelClick()" type="button">Cancelar</button>

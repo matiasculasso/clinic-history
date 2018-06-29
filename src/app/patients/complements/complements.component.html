@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div *ngIf="error">
+    <div class="alert alert-danger">
+      <strong>Error!</strong> Error tratando de obtener metodos complementarios
+      <strong>Detalles:</strong> {{error}}
+    </div>
+  </div>
+  <div *ngIf="!error">
+    <div *ngIf="loading">
+      <img src="assets/loading.gif" class="img-responsive center-block loadgin-image">
+    </div>
+    <div *ngIf="!loading">
+      <div *ngIf="items && items.length === 0 ">
+        <div class="alert alert-warning">
+          <strong>Sin Datos!</strong> No se encotraron datos metodos complementarios para este paciente.
+        </div>
+      </div>
+      <button type="button" (click)="test()" >test</button>
+      <div *ngIf="items &&  items.length > 0">
+        <table class="table table-hover table-responsive">
+          <thead>
+            <tr>
+              <th>Metodos Complementarios</th>
+              <th *ngFor="let i of items">{{i.date}}</th>        
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let m of methodsGrid; let i = index; trackBy: index">
+                <td class="complement-td-tile" >{{m.name}}
+                <td class="complement-td-input" *ngFor="let c of m.cells; let j = index; trackBy: index">
+                  <input class="complement-input" type="number" [(ngModel)]="methodsGrid[i].cells[j].value" /> 
+                </td>
+            </tr>            
+          </tbody>
+        </table>
+
+        <table class="table table-hover table-responsive">
+            <thead>
+              <tr>
+                <th>Laboratorios</th>
+                <th *ngFor="let i of items;">{{i.date}}</th>                                          
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let l of labsGrid; let i = index; trackBy: index">
+                    <td class="complement-td-tile" >{{l.name}}</td>
+                    <td class="complement-td-input" *ngFor="let c of l.cells; let j = index; trackBy: index">
+                        <input class="complement-input" type="number" [(ngModel)]="labsGrid[i].cells[j].value" /> 
+                    </td>
+                </tr>            
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>

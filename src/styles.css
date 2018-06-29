@@ -8,6 +8,19 @@
     border-bottom-left-radius: 4px;
 }
 
+.complement-input {
+  width: 65px;
+  text-align: right;
+}
+
+.complement-td-tile {
+  width: 100px;
+}
+
+.complement-td-input {
+  width: 70px;
+}
+
 .nav-main-menu {
     font-size: 20px;
 }

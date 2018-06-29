@@ -16,9 +16,11 @@ import { PatientsEditComponent } from './patients-edit/patients-edit.component';
 import { ConsultationComponent } from './consultations/consultation.component';
 import { ConsultationHistoryComponent } from './consultations/consultation-history.component';
 import { DialogComponent } from '../controls/dialog.component';
+import { ComplementsComponent } from './complements/complements.component';
 
 import * as moment from 'moment';
 import * as toastr from 'toastr';
+
 
 moment.locale('es-Es');
 
@@ -33,7 +35,8 @@ toastr.options.newestOnTop = false;
     ConsultationHistoryComponent,
     AgePipe,
     HighlightPipe,
-    DialogComponent
+    DialogComponent,
+    ComplementsComponent
   ],
   imports: [
     AppRoutingModule,

@@ -15,42 +15,57 @@
           <strong>Sin Datos!</strong> No se encotraron datos metodos complementarios para este paciente.
         </div>
       </div>
-      <button type="button" (click)="test()" >test</button>
+      <div style="float: right">
+          <button class="btn btn-success" [disabled]="!modelUpdated" (click)="onSaveCompMethodsClick()"  type="button">Guardar</button>
+          <button class="btn btn-danger" [disabled]="!modelUpdated" (click)="onCancelCompMethds()" type="button">Cancelar</button>
+      </div>
       <div *ngIf="items &&  items.length > 0">
+
         <table class="table table-hover table-responsive">
           <thead>
             <tr>
               <th>Metodos Complementarios</th>
-              <th *ngFor="let i of items">{{i.date}}</th>        
+              <th *ngFor="let i of items">{{i.date}}</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let m of methodsGrid; let i = index; trackBy: index">
-                <td class="complement-td-tile" >{{m.name}}
-                <td class="complement-td-input" *ngFor="let c of m.cells; let j = index; trackBy: index">
-                  <input class="complement-input" type="number" [(ngModel)]="methodsGrid[i].cells[j].value" /> 
-                </td>
-            </tr>            
+              <td class="complement-td-tile">{{m.name}}</td>
+              <td class="complement-td-input" *ngFor="let c of m.cells; let j = index; trackBy: index">
+                  <input class="complement-input" type="number" (change)="setModelToUpdated()" [(ngModel)]="methodsGrid[i].cells[j].value" />
+              </td>
+            </tr>
           </tbody>
         </table>
 
         <table class="table table-hover table-responsive">
-            <thead>
-              <tr>
-                <th>Laboratorios</th>
-                <th *ngFor="let i of items;">{{i.date}}</th>                                          
-              </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let l of labsGrid; let i = index; trackBy: index">
-                    <td class="complement-td-tile" >{{l.name}}</td>
-                    <td class="complement-td-input" *ngFor="let c of l.cells; let j = index; trackBy: index">
-                        <input class="complement-input" type="number" [(ngModel)]="labsGrid[i].cells[j].value" /> 
-                    </td>
-                </tr>            
-            </tbody>
-          </table>
+          <thead>
+            <tr>
+              <th>Laboratorios</th>
+              <th *ngFor="let i of items;">{{i.date}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let l of labsGrid; let i = index; trackBy: index">
+              <td class="complement-td-tile">{{l.name}}</td>
+              <td class="complement-td-input" *ngFor="let c of l.cells; let j = index; trackBy: index">
+                <input class="complement-input" type="number" (change)="setModelToUpdated()" [(ngModel)]="labsGrid[i].cells[j].value" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+  <app-dialog [closable]="false"  [(visible)]="showDialog">
+      <div class="alert alert-warning">
+          <strong>Atención!</strong> Todos los datos que ha introducido se perderan, seguro que desea cancelar?
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-default" type="button" (click)="showDialog = !showDialog">Seguir Editando</button>
+          <button class="btn btn-danger" type="button" (click)="onConfirmClearClick()">Cancelar Edición</button>
+      </div>
+    </app-dialog>
 </div>
+
+

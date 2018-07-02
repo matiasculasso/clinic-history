@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
 import * as toastr from 'toastr';
 
-import { Consultation } from '../../models/consultation-model';
 import { HttpHelperService } from '../../helpers/httpHelper.service';
 import { PatiensEditModel } from '../../models/patient-edit-model';
 
@@ -29,6 +28,7 @@ export class PatientsEditComponent implements OnInit {
   showDialog = false;
   patientId?: number;
   collection = 'patients';
+  activeTab = 'personal-information';
 
   constructor(private httpClient: HttpHelperService,
     public formBuilder: FormBuilder,
@@ -107,6 +107,10 @@ export class PatientsEditComponent implements OnInit {
   private loadDiagnostics(): void {
     this.httpClient.HttpGet('diagnostics')
       .subscribe((data) => { this.diagnostics = data; });
+  }
+
+  public setActiveTab(tab: string): void {
+    this.activeTab = tab;
   }
 
   public onSubmit(): void {

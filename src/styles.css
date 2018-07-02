@@ -14,15 +14,15 @@
 }
 
 .complement-td-tile {
-  width: 100px;
+  width: 25%;
 }
 
 .complement-td-input {
-  width: 70px;
+  width: 15%;  
 }
 
 .nav-main-menu {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 input[type="file"]{

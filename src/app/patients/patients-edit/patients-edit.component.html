@@ -10,25 +10,25 @@
 <div *ngIf="!loading && !error" class="comment-tabs">
   <ul class="nav nav-tabs" role="tablist">
     <li class="active">
-      <a role="tab" href="#personal-information" data-toggle="tab">
+      <a role="tab" href="#personal-information"(click)="setActiveTab('personal-information')" data-toggle="tab">
         <h4 class="reviews text-capitalize">
           <span class="fa fa-address-book"></span>Datos Filiatorios</h4>
       </a>
     </li>
     <li>
-      <a href="#history" role="tab" data-toggle="tab">
+      <a href="#history" role="tab" data-toggle="tab" (click)="setActiveTab('history')">
         <h4 class="reviews text-capitalize">
           <span class="fa fa-heartbeat"></span>Antecedentes</h4>
       </a>
     </li>
     <li>
-      <a href="#consultations" role="tab" data-toggle="tab">
+      <a href="#consultations" role="tab" data-toggle="tab" (click)="setActiveTab('consultations')">
         <h4 class="reviews text-capitalize">
           <span class="fa fa-stethoscope"></span>Consultas</h4>
       </a>
     </li>
     <li>
-      <a href="#complementary-methods" role="tab" data-toggle="tab">
+      <a href="#complementary-methods" role="tab" data-toggle="tab" (click)="setActiveTab('complementary-methods')">
         <h4 class="reviews text-capitalize">
           <span class="fa fa-plus-square"></span>Metodos Complementarios</h4>
       </a>
@@ -223,10 +223,12 @@
         </div>
       </div>
       <div class="tab-pane" id="complementary-methods">
-        <app-complements></app-complements>
+        <app-complements [patientId]="patientId" *ngIf="patientId" ></app-complements>
       </div>
-      <button class="btn btn-success" [disabled]="!patientForm.valid" type="submit">Guardar</button>
-      <button class="btn btn-danger" [disabled]="!patientForm.touched" (click)="onCancelClick()" type="button">Cancelar</button>
+      <div *ngIf="activeTab !== 'complementary-methods'" >
+          <button  class="btn btn-success" [disabled]="!patientForm.valid" type="submit">Guardar</button>
+          <button class="btn btn-danger" [disabled]="!patientForm.touched" (click)="onCancelClick()" type="button">Cancelar</button>
+      </div>
     </div>
   </form>
 </div>

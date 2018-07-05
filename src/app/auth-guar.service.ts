@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
     if (isAuthorized) {
       return true;
     }
-
+    this.oidcSecurityService.authorize();
     this.router.navigate(['/']);
     return false;
   }

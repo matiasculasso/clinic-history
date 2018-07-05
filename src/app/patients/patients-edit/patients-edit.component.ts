@@ -96,7 +96,7 @@ export class PatientsEditComponent implements OnInit {
 
   private loadConsultations(id: string): void {
     this.httpClient.HttpGet('consultations/' + id)
-      .subscribe((data) => {console.log(data); this.consultations = data; });
+      .subscribe((data) => { this.consultations = data; });
   }
 
   private loadSocialSecurities(): void {

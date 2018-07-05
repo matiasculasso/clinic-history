@@ -86,6 +86,10 @@ export class ComplementsComponent implements OnInit {
 
   private processDataToShow(): void {
     // process complementary methods
+    if (this.labs.length === 0 || this.methods.length === 0) {
+      return;
+    }
+
     this.methods.forEach( m => {
       const gridItem: CompGridModel = { id: m.id, name: m.name, cells: new Array()};
       this.items.forEach( i => {

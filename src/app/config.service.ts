@@ -10,7 +10,7 @@ export class ConfigService {
         const oidcConfig = new OpenIDImplicitFlowConfiguration();
         oidcConfig.stsServer = environment.SERVER_URL;
         oidcConfig.redirect_url = environment.CLIENT_URL;
-        oidcConfig.client_id = 'clinic-hitstory';
+        oidcConfig.client_id = 'clinic-history';
         oidcConfig.response_type = 'id_token token';
         oidcConfig.scope = 'openid profile patients';
         oidcConfig.post_logout_redirect_uri = environment.CLIENT_URL;

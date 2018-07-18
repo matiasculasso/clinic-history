@@ -22,10 +22,12 @@ export class PatientsEditComponent implements OnInit {
   patientForm: FormGroup;
   consultationsForm: FormGroup;
   showNewConsultation = false;
+  showDiagnosticDialog = false;
   consultations: any[];
   socialSecurities: any[];
   diagnostics: any[];
   showDialog = false;
+  showSocialSecutiryDialog = false;
   patientId?: number;
   collection = 'patients';
   activeTab = 'personal-information';
@@ -70,6 +72,68 @@ export class PatientsEditComponent implements OnInit {
     });
   }
 
+  public setActiveTab(tab: string): void {
+    this.activeTab = tab;
+  }
+
+  public onSubmit(): void {
+    let httpAction = new Observable<Object>();
+
+    if (this.patientId) {
+      httpAction = this.httpClient.HttpPut(this.collection, this.patientForm.value, this.patientId);
+    } else {
+      httpAction = this.httpClient.HttpPost(this.collection, this.patientForm.value);
+    }
+
+    httpAction.subscribe(response => {
+      console.log(`OK, ID:--> ${response}`);
+      this.patientId ? this.location.back() : this.router.navigate(['/', 'patients']);
+      toastr.success('Datos guardados correctamente:');
+    },
+      error => {
+        this.error = error;
+        toastr.error('Error al interntar guardar los datos del paciente, error:' + error);
+      });
+  }
+
+  public onCancelClick(): void {
+    this.showDialog = true;
+  }
+
+  public onConfirmCancelClick(): void {
+    this.location.back();
+  }
+
+  public onAddSocialSecurityClick = () =>  { this.showSocialSecutiryDialog = true; };
+
+  public onSaveNewSocialSecurityClick(value) {
+     this.httpClient.HttpPost('social-securities', {name: value})
+     .subscribe(
+       (result: number) => {
+          this.showSocialSecutiryDialog = false;
+          this.socialSecurities.push({name: value, id: result});
+          this.patientForm.controls['socialSecurityId'].reset();
+          this.patientForm.controls['socialSecurityId'].setValue(result);
+        }, () => {
+          toastr.error('Error al interntar guardar la obra social. Compruebe que la obra social no exista');
+      });
+  }
+
+  public onAddDiagnosticClick = () => { this.showDiagnosticDialog = true; };
+
+  public onSaveNewDiagnosticClick(value) {
+    this.httpClient.HttpPost('diagnostics', {name: value})
+    .subscribe(
+      (result: number) => {
+         this.showDiagnosticDialog = false;
+         this.diagnostics.push({name: value, id: result});
+         this.patientForm.controls['diagnosticId'].reset();
+         this.patientForm.controls['diagnosticId'].setValue(result);
+       }, () => {
+         toastr.error('Error al interntar guardar el diagnóstico. Compruebe que el diagnóstico no exista');
+     });
+ }
+
   private loadData(id: string): void {
     this.loading = true;
     this.httpClient.HttpGetEntity(this.collection, id)
@@ -107,37 +171,5 @@ export class PatientsEditComponent implements OnInit {
   private loadDiagnostics(): void {
     this.httpClient.HttpGet('diagnostics')
       .subscribe((data) => { this.diagnostics = data; });
-  }
-
-  public setActiveTab(tab: string): void {
-    this.activeTab = tab;
-  }
-
-  public onSubmit(): void {
-    let httpAction = new Observable<Object>();
-
-    if (this.patientId) {
-      httpAction = this.httpClient.HttpPut(this.collection, this.patientForm.value, this.patientId);
-    } else {
-      httpAction = this.httpClient.HttpPost(this.collection, this.patientForm.value);
-    }
-
-    httpAction.subscribe(response => {
-      console.log(`OK, ID:--> ${response}`);
-      this.patientId ? this.location.back() : this.router.navigate(['/', 'patients']);
-      toastr.success('Datos guardados correctamente:');
-    },
-      error => {
-        this.error = error;
-        toastr.error('Error al interntar guardar los datos del paciente, error:' + error);
-      });
-  }
-
-  public onCancelClick(): void {
-    this.showDialog = true;
-  }
-
-  public onConfirmCancelClick(): void {
-    this.location.back();
   }
 }

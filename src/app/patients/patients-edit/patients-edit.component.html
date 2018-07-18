@@ -76,19 +76,21 @@
           </div>
           <div class="form-group col-lg-6 col-md-6">
             <label for="socialSecurityId" class="col-sm-3 control-label">Obra Social</label>
-            <div class="col-sm-9">
+            <div class="col-sm-6">
               <ngx-select [items]="socialSecurities" optionValueField="id"  optionTextField="name"
                 formControlName="socialSecurityId">
               </ngx-select>
-            </div>                          
+            </div>
+            <button class="col-sm-4" type="button" class="btn btn-info" (click)="onAddSocialSecurityClick()" >Agregar Nueva</button>                      
           </div>
           <div class="form-group col-lg-6 col-md-6">
             <label for="diagnosticId" class="col-sm-3 control-label">Diagnóstico </label>
-            <div class="col-sm-9">
+            <div class="col-sm-6">
                 <ngx-select [items]="diagnostics" optionValueField="id"  optionTextField="name"
                   formControlName="diagnosticId">
                 </ngx-select>
             </div>
+            <button class="col-sm-4" type="button" class="btn btn-info" (click)="onAddDiagnosticClick()" >Agregar Nuevo</button>                      
           </div>
           <div class="form-group col-lg-6 col-md-6">
             <label for="origin" class="col-sm-3 control-label">Procedencia</label>
@@ -239,6 +241,30 @@
   <div class="modal-footer">
       <button class="btn btn-default" (click)="showDialog = !showDialog">Cancelar</button>
       <button class="btn btn-danger" (click)="onConfirmCancelClick()">Salir</button>
+  </div>
+</app-dialog>
+<app-dialog [closable]="false"  [(visible)]="showSocialSecutiryDialog">
+  <div class="alert alert-info">
+      <label><strong>Crear nueva obra social</strong></label>
+        <div class>
+          <input class="form-control" #socialSecurity name="newSocialSecurity" placeholder="Nombre de la obra social">
+        </div>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-default" (click)="showSocialSecutiryDialog = !showSocialSecutiryDialog">Cancelar</button>
+      <button class="btn btn-success" (click)="onSaveNewSocialSecurityClick(socialSecurity.value)">Guardar</button>
+  </div>
+</app-dialog>
+<app-dialog [closable]="false"  [(visible)]="showDiagnosticDialog">
+  <div class="alert alert-info">
+      <label><strong>Crear nuevo diagnóstico</strong></label>
+        <div class>
+          <input class="form-control" #newDiagnostic name="newDiagnostic" placeholder="Nombre de diagnóstico">
+        </div>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-default" (click)="showDiagnosticDialog = !showDiagnosticDialog">Cancelar</button>
+      <button class="btn btn-success" (click)="onSaveNewDiagnosticClick(newDiagnostic.value)">Guardar</button>
   </div>
 </app-dialog>
 

@@ -1,7 +1,7 @@
 <div class="jumbotron">
     <div class="container">
         <h2 class="display-3">Servicio de Gastroenterología | Registro de Historias Clínicas</h2>        
-        <h4>Bienvenidos al sistema registro de pacientes del servicio de gastroenterología de la Clínica del Sol.</h4>
+        <h4>Bienvenidos al sistema registro de pacientes del servicio de gastroenterología pediátrica.</h4>
             <div *ngIf="(this.oidcSecurityService.getIsAuthorized() | async) === true" >
                     <a class="btn btn-primary btn-lg" [routerLink]="['/', 'patients']" role="button">
                         <span class="fa fa-search" ></span>Buscar Paciente »

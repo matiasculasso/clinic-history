@@ -1,15 +1,16 @@
 <nav class="navbar navbar-inverse nav-main-menu">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <div class="image-container" >        
+    <!-- <div class="navbar-header">
+      <h6>Servicio de Grastroenterología</h6>
+      <!-- <div class="image-container" >        
         <a href="http://www.clinicadelsol.com.ar/">
         <img src="assets/logo.png" class="icon-banner">  
       </a>            
-    </div>      
-    </div>    
+    </div>       
+    </div>     -->
     <div class="nav-main-menu">
       <ul class="nav navbar-nav">
-        <li><a routerLink="/"><span class="fa fa-home"></span> Home  </a></li>
+          <li><a routerLink="/">Servicio de Grastroenterología </a></li>        
         <li *ngIf="(this.oidcSecurityService.getIsAuthorized() | async) === true" >          
           <a routerLink="/patients"><span class="fa fa-users"></span>Pacientes</a>
         </li>
